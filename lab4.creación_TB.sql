@@ -2,12 +2,12 @@
 
 --formato BÁSICO de la sentencia Create para una tabla o entidad:
 
-/*CREATE TABLE NOMBRE_TABLA (
+CREATE TABLE NOMBRE_TABLA (
             CAMPO1 TIPO,
             CAMPO1 TIPO,
             CAMPO1 TIPO
 )
-GO*/
+GO
 
 /*----------------------------------------------------------*/
 
