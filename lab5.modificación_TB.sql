@@ -2,13 +2,13 @@
 /*
 INDICE:
 
-Agregar una columna a la tabla:         -  28
-Agregar varias columnas a la tabla:     -  37
-Agregar una llave primaria a la tabla:  -  46
-Agregar llave compuesta a la tabla:     -  54
-Agregar una llave foránea a la tabla:   -  62
-Eliminar una columna de la tabla:       -  70
-Modificar una columna a la tabla:       -  79
+Agregar una columna a la tabla:         -  LINEA -> 28
+Agregar varias columnas a la tabla:     -  LINEA -> 37
+Agregar una llave primaria a la tabla:  -  LINEA -> 46
+Agregar llave compuesta a la tabla:     -  LINEA -> 54
+Agregar una llave foránea a la tabla:   -  LINEA -> 62
+Eliminar una columna de la tabla:       -  LINEA -> 70
+Modificar una columna a la tabla:       -  LINEA -> 79
 
 */
 
