@@ -1,3 +1,8 @@
+/*NOTA:
+ archivo principal		      -> ON	            -> .MDF
+ Archivo de datos:          -> ON PRIMARY     -> .MDF
+ Archivo secunda,rio:       -> ),(            -> .NDF
+ Archivo de transacciones:  -> LOG ON         -> .LDF*/
 
 /*-------------------------------------------------------------*/
 /*-------------------------CREACIÓN----------------------------*/
