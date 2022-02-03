@@ -1,3 +1,8 @@
+
+/*-------------------------------------------------------------*/
+/*-------------------------CREACIÓN----------------------------*/
+/*-------------------------------------------------------------*/
+
 /*Sintaxis para la creación de una base de datos estándar:*/
 
 CREATE DATABASE [NOMBRE_BASE_DATOS]
@@ -9,7 +14,6 @@ de sus archivos:*/
 
 --1. Creando la base de datos BD_EJEMPLO 
 CREATE DATABASE BD_EJEMPLO GO
-
 --2. Visualizando las características de sus archivos
 SP_HELPDB BD_EJEMPLO
 GO
@@ -64,7 +68,6 @@ MAXSIZE = 60MB,
 FILEGROWTH = 10%
 )
 GO
-
 --VERIFICANDO LA EXISTENCIA DE LOS ARCHIVOS
 SP_HELPDB BD_COMERCIAL
 GO
@@ -85,12 +88,12 @@ crecimiento del 5% y debe ser guardado en la carpeta
 C:\COMERCIAL\LOG.
 Verifique la existencia de los archivos implementados.
 */
---VALIDANDO LA CREACIÓN DE LA BASE DE DATOS
+
+--VALIDANDO LA EXISTENCIA DE LA BASE DE DATOS
 IF DB_ID('COMERCIAL2017') IS NOT NULL
 BEGIN DROP DATABASE COMERCIO2017
 END
 GO
-
 --CREACIÓN DE LA BASE DE DATOS
 CREATE DATABASE COMERCIAL2017
 ON
@@ -110,9 +113,7 @@ MAXSIZE = 50MB,
 FILEGROWTH = 5%
 )
 GO
-
 --VERIFICANDO LA CREACIÓN DE LOS ARCHIVOS
-
 SP_HELPDB COMERCIAL2017
 GO
 
@@ -137,15 +138,12 @@ Verifique la existencia de los archivos implementados.
 
 
 --VERIFICACIÓN DE EXISTENCIA DE LA BASE DE DATOS
-
 IF DB_ID('BD_TIENDA')IS NOT NULL
 BEGIN 
 DROP DATABASE BD_TIENDA
 END
 GO
-
 --CREACIÓN DE LA BASE DE DATOS
-
 CREATE DATABASE BD_TIENDA
 ON
 (
@@ -171,4 +169,75 @@ FILEGROWTH = 5
 )
 GO
 SP_HELPDB BD_TIENDA
+GO
+
+/*------------------------------------------------------------*/
+/*-------------------MODIFICACIÓN-----------------------------*/
+/*------------------------------------------------------------*/
+
+--Caso 1: Modificar el nombre de la base de datos BD_TIENDA por MINIMARKET
+USE MASTER
+GO
+ALTER DATABASE BD_TIENDA
+MODIFY NAME=MINIMARKET
+GO
+
+/*---------------------------------------------------------------*/
+
+--Caso 2: Agregar 2 archivos secundarios a la base de datos COMERCIAL2017
+ALTER DATABASE COMERCIAL2017
+ADD FILE
+(
+NAME=COMERCIAL_SEC1,
+FILENAME='C:\COMERCIAL\SEC\COMERCIAL_SEC1.NDF',
+SIZE=10,
+MAXSIZE=50,
+FILEGROWTH=10%
+),
+(
+NAME=COMERCIAL_SEC2,
+FILENAME='C:\COMERCIAL\SEC\COMERCIAL_SEC2.NDF',
+SIZE=10,
+MAXSIZE=100,
+FILEGROWTH=15%
+)
+GO
+--VERIFICANDO LOS ARCHIVOS CREADOS
+SP_HELPDB COMERCIAL2017
+GO
+
+/*---------------------------------------------------------------*/
+
+--Caso 3: Eliminar el archivo secundario COMERCIAL_SEC2 de la base de datos COMERCIAL2017
+ALTER DATABASE COMERCIAL2017
+REMOVE FILE COMERCIAL_SEC2
+GO
+--VERIFICANDO LOS ARCHIVOS
+SP_HELPDB COMERCIAL2017
+GO
+
+/*----------------------------------------------------------------*/
+
+--SINTAXIS PARA LA MODIFICACIÓN DEL NOMBRE DE UNA ARCHIVO
+ALTER DATABASE [BaseDeDatos]       
+MODIFY FILE (NAME=N’NombreAnterior’, NEWNAME=N’NuevoNombre’)
+GO
+
+/*-----------------------------------------------------------------*/
+                                   
+/*------------------------------------------------------------*/
+/*-------------------ELIMINACIÓN------------------------------*/
+/*------------------------------------------------------------*/
+
+--Caso 1: Eliminar la base de datos BD_EJEMPLO
+DROP DATABASE BD_FARMACIA
+GO
+
+/*---------------------------------------------------------------*/
+
+--Caso 2: Eliminar la base de datos BD_COMERCIAL validando la existencia del mismo.
+USE MASTER
+GO
+IF DB_ID('BD_COMERCIAL') IS NOT NULL
+DROP DATABASE BD_COMERCIAL
 GO
